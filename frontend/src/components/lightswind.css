@@ -1,0 +1,506 @@
+/*
+ * lightswind.com
+ * lightswind.css
+ *
+ * This file contains a standalone CSS library with custom themes, animations,
+ * and utility classes. It does NOT require Tailwind CSS for compilation.
+ * Users can directly import this file into their projects.
+   Also works without overriding your tailwind CSS
+ */
+
+/* ==========================================================================
+   1. CSS Variables for Theming
+   ========================================================================== */
+
+/* Light (default) theme variables */
+
+
+/* ==========================================================================
+   2. Keyframe Animations
+   ========================================================================== */
+
+/* Neon Button Animations */
+@keyframes neon-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes neon-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Tiny Bar Loader Animation */
+@keyframes TinyBarLoader-anime {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+
+/* Glassmorphism Animated Login Form Background */
+@keyframes GlassLoginAnimateBg {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Gradient Animated Background Turn */
+@keyframes GradientAnimatedBgTurn {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* Glassmorphism Marquee Animation */
+@keyframes marquee-right-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.infinite-cards-container {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.infinite-cards-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation-name: marquee-right-left;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.infinite-cards-container:hover .infinite-cards-track {
+  animation-play-state: paused;
+}
+
+/* Animated Gradient Border Button Property and Animation */
+/* @property MUST be defined at the global scope, not inside a rule */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+/* Product Card Skeleton Loader Animation */
+@keyframes skeletonLoader {
+  0% {
+    background-position: -2000px 0;
+  }
+  100% {
+    background-position: 2000px 0;
+  }
+}
+
+/* Skeleton Bars Loader Animation */
+@keyframes skeletonBarsLoader {
+  0% {
+    background-position: -2000px 0;
+  }
+  100% {
+    background-position: 2000px 0;
+  }
+}
+
+/* Animated Cart Button Animations */
+@keyframes AnimatedCartBtntruck {
+  0% {
+    left: -10%;
+  }
+  40%,
+  55% {
+    left: 50%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+@keyframes AnimatedCartBtnbox {
+  0%,
+  40% {
+    top: -20%;
+    left: -5%;
+  }
+  55% {
+    top: 37%;
+    left: 52%;
+  }
+  100% {
+    top: 37%;
+    left: 110%;
+  }
+}
+@keyframes AnimatedCartBtntxt1 {
+  0% {
+    opacity: 1;
+  }
+  20%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes AnimatedCartBtntxt2 {
+  0%,
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Shimmer Effect Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Toast Notification Animations (Desktop & Mobile) */
+@keyframes toast-enter {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes toast-exit {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes toast-enter-mobile {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes toast-exit-mobile {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   3. Base Styles & Global Utilities
+   ========================================================================== */
+
+/* Global Scrollbar Styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--scrollbar-thumb)) hsl(var(--scrollbar-track));
+  /* Apply font family globally */
+  box-sizing: border-box; /* Good practice for all elements */
+}
+
+/* Overflow handling for dialogs/popovers */
+.command-dialog-open,
+.popover-open {
+  overflow: hidden;
+}
+.command-dialog-open::after,
+.popover-open::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  transition: backdrop-filter 0.2s ease;
+}
+
+/* Smooth Scroll Utility */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Hide Scrollbar Utility */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* For IE and Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* No Scroll Utility */
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Custom Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.3);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.5);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(120, 120, 120, 0.7);
+}
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Flex Wrap Tabs Layout */
+.flex-wrap-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem; /* 4px */
+}
+
+/* Sidebar Scrollable Syntax Scrollbar */
+.sidebar-scrollable-syntax::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.sidebar-scrollable-syntax::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+.sidebar-scrollable-syntax::-webkit-scrollbar-thumb {
+  background-color: #505050;
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+.sidebar-scrollable-syntax::-webkit-scrollbar-thumb:hover {
+  background-color: #b3b3b3;
+}
+
+/* ==========================================================================
+   4. Utility Classes (Explicitly Defined)
+   ========================================================================== */
+
+
+
+
+/* Scrollbar Color Utilities */
+.text-scrollbar-thumb {
+  color: hsl(var(--scrollbar-thumb));
+}
+.bg-scrollbar-thumb {
+  background-color: hsl(var(--scrollbar-thumb));
+}
+.text-scrollbar-track {
+  color: hsl(var(--scrollbar-track));
+}
+.bg-scrollbar-track {
+  background-color: hsl(var(--scrollbar-track));
+}
+.text-scrollbar-hover {
+  color: hsl(var(--scrollbar-hover));
+}
+.bg-scrollbar-hover {
+  background-color: hsl(var(--scrollbar-hover));
+}
+
+/* Animation Utility Classes */
+.neon-pulse-animation {
+  animation: neon-pulse 0.6s ease-in-out infinite;
+}
+.neon-bounce-animation {
+  animation: neon-bounce 0.3s ease-in-out infinite;
+}
+.TinyBarLoader {
+  animation: TinyBarLoader-anime 1s linear infinite;
+}
+.GlassMarqueeContainer {
+  /* This class is also used for layout, but also for animation */
+  animation: marquee-right-left 12s linear infinite;
+}
+.animated-gradient-border-button {
+  --border-angle: 0turn;
+  animation: bg-spin 3s linear infinite;
+}
+.animate-skeletonLoader {
+  animation: skeletonLoader 5s ease-in-out infinite;
+}
+.skeletonBarsLoaders {
+  background-size: 200% 100%;
+  animation: skeletonBarsLoader 6s ease-in-out infinite;
+}
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Animated Cart Button Specific Classes */
+.cart-button.clicked .cart-shopping-svg {
+  animation: AnimatedCartBtntruck 2s ease-in-out forwards;
+}
+.cart-button.clicked .cart-box-svg {
+  animation: AnimatedCartBtnbox 2s ease-in-out forwards;
+}
+.cart-button.clicked span.add-to-cart {
+  animation: AnimatedCartBtntxt1 2s ease-in-out forwards;
+}
+.cart-button.clicked span.added {
+  animation: AnimatedCartBtntxt2 2s ease-in-out forwards;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  transform: none;
+}
+.card-hover:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Toggle Switch Component */
+.toggle-switch {
+  position: relative;
+  width: 2.5rem; /* w-10 */
+  height: 1.25rem; /* h-5 */
+  border-radius: 9999px;
+  background-color: hsl(var(--secondary));
+  transition-property: background-color;
+  transition-duration: 200ms;
+}
+.toggle-switch.active {
+  background-color: hsl(var(--primary));
+}
+.toggle-switch .toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1rem; /* w-4 */
+  height: 1rem; /* h-4 */
+  border-radius: 9999px;
+  background-color: hsl(var(--foreground));
+  transition-property: transform;
+  transition-duration: 200ms;
+}
+.toggle-switch.active .toggle-knob {
+  transform: translateX(1.25rem); /* translate-x-5 */
+  background-color: hsl(var(--background));
+}
+
+/* Dropdown Hover Item */
+.dropdown-hover-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition-property: color, background-color;
+  transition-duration: 200ms;
+}
+.dropdown-hover-item:hover {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Dropdown Category & Item */
+.dropdown-category {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: hsl(var(--muted-foreground));
+}
+.dropdown-category-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+/* Tabs Background Indicator */
+.tabs-bg-indicator {
+  position: absolute;
+  border-radius: 0.125rem;
+  background-color: hsl(var(--primary));
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transform-origin: center center;
+}
+
+/* Sidebar Menu Indicator */
+.sidebar-menu-indicator {
+  position: absolute;
+  transition-property: all;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
